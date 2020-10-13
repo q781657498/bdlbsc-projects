@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdlbsc.government.mapper.GovernmentDbaddressMapper">
+  <resultMap id="BaseResultMap" type="com.bdlbsc.government.entity.GovernmentDbaddress">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="government_id" jdbcType="BIGINT" property="governmentId" />
+    <result column="address_id" jdbcType="VARCHAR" property="addressId" />
+    <result column="address_name" jdbcType="VARCHAR" property="addressName" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="province_id" jdbcType="VARCHAR" property="provinceId" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="county_id" jdbcType="VARCHAR" property="countyId" />
+    <result column="county_name" jdbcType="VARCHAR" property="countyName" />
+    <result column="street_id" jdbcType="VARCHAR" property="streetId" />
+    <result column="street_name" jdbcType="VARCHAR" property="streetName" />
+    <result column="community_id" jdbcType="VARCHAR" property="communityId" />
+    <result column="community_name" jdbcType="VARCHAR" property="communityName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from government_dbAddress
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bdlbsc.government.entity.GovernmentDbaddress">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into government_dbAddress (government_id, address_id, address_name, 
+      level, creator, create_time, 
+      update_time, province_id, province_name, 
+      city_id, city_name, county_id, 
+      county_name, street_id, street_name, 
+      community_id, community_name)
+    values (#{governmentId,jdbcType=BIGINT}, #{addressId,jdbcType=VARCHAR}, #{addressName,jdbcType=VARCHAR}, 
+      #{level,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{provinceId,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, #{countyId,jdbcType=VARCHAR}, 
+      #{countyName,jdbcType=VARCHAR}, #{streetId,jdbcType=VARCHAR}, #{streetName,jdbcType=VARCHAR}, 
+      #{communityId,jdbcType=VARCHAR}, #{communityName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.bdlbsc.government.entity.GovernmentDbaddress">
+    update government_dbAddress
+    set government_id = #{governmentId,jdbcType=BIGINT},
+      address_id = #{addressId,jdbcType=VARCHAR},
+      address_name = #{addressName,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      province_id = #{provinceId,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      county_id = #{countyId,jdbcType=VARCHAR},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      street_id = #{streetId,jdbcType=VARCHAR},
+      street_name = #{streetName,jdbcType=VARCHAR},
+      community_id = #{communityId,jdbcType=VARCHAR},
+      community_name = #{communityName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, government_id, address_id, address_name, level, creator, create_time, 
+    update_time, province_id, province_name, city_id, city_name, county_id, county_name, 
+    street_id, street_name, community_id, community_name
+    from government_dbAddress
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, government_id, address_id, address_name, level, creator, create_time, 
+    update_time, province_id, province_name, city_id, city_name, county_id, county_name, 
+    street_id, street_name, community_id, community_name
+    from government_dbAddress
+  </select>
+</mapper>

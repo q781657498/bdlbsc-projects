@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdlbsc.government.mapper.BdMenuMapper">
+  <resultMap id="BaseResultMap" type="com.bdlbsc.government.entity.BdMenu">
+    <id column="menu_id" jdbcType="BIGINT" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="menu_type" jdbcType="CHAR" property="menuType" />
+    <result column="visible" jdbcType="CHAR" property="visible" />
+    <result column="perms" jdbcType="VARCHAR" property="perms" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="organization_id" jdbcType="VARCHAR" property="organizationId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bd_menu
+    where menu_id = #{menuId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.bdlbsc.government.entity.BdMenu">
+    insert into bd_menu (menu_id, menu_name, parent_id, 
+      order_num, url, menu_type, 
+      visible, perms, icon, 
+      create_by, create_time, update_by, 
+      update_time, remark, organization_id
+      )
+    values (#{menuId,jdbcType=BIGINT}, #{menuName,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
+      #{orderNum,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{menuType,jdbcType=CHAR}, 
+      #{visible,jdbcType=CHAR}, #{perms,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{organizationId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.bdlbsc.government.entity.BdMenu">
+    update bd_menu
+    set menu_name = #{menuName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      menu_type = #{menuType,jdbcType=CHAR},
+      visible = #{visible,jdbcType=CHAR},
+      perms = #{perms,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      organization_id = #{organizationId,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select menu_id, menu_name, parent_id, order_num, url, menu_type, visible, perms, 
+    icon, create_by, create_time, update_by, update_time, remark, organization_id
+    from bd_menu
+    where menu_id = #{menuId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select menu_id, menu_name, parent_id, order_num, url, menu_type, visible, perms, 
+    icon, create_by, create_time, update_by, update_time, remark, organization_id
+    from bd_menu
+  </select>
+</mapper>

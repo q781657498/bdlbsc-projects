@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdlbsc.government.mapper.PlatformProductCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.bdlbsc.government.entity.PlatformProductCategory">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="classfiy_level" jdbcType="BIGINT" property="classfiyLevel" />
+    <result column="classfiy_name" jdbcType="VARCHAR" property="classfiyName" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from platform_product_category
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.bdlbsc.government.entity.PlatformProductCategory">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into platform_product_category (create_time, update_time, create_id, 
+      create_name, classfiy_level, classfiy_name, 
+      parent_id)
+    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=BIGINT}, 
+      #{createName,jdbcType=VARCHAR}, #{classfiyLevel,jdbcType=BIGINT}, #{classfiyName,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=BIGINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.bdlbsc.government.entity.PlatformProductCategory">
+    update platform_product_category
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=BIGINT},
+      create_name = #{createName,jdbcType=VARCHAR},
+      classfiy_level = #{classfiyLevel,jdbcType=BIGINT},
+      classfiy_name = #{classfiyName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, create_time, update_time, create_id, create_name, classfiy_level, classfiy_name, 
+    parent_id
+    from platform_product_category
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, create_time, update_time, create_id, create_name, classfiy_level, classfiy_name, 
+    parent_id
+    from platform_product_category
+  </select>
+</mapper>

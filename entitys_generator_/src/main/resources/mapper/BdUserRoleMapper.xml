@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdlbsc.government.mapper.BdUserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.bdlbsc.government.entity.BdUserRole">
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="organization_id" jdbcType="VARCHAR" property="organizationId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.bdlbsc.government.entity.BdUserRole">
+    insert into bd_user_role (user_id, role_id, organization_id
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT}, #{organizationId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select user_id, role_id, organization_id
+    from bd_user_role
+  </select>
+</mapper>

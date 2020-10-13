@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdlbsc.government.mapper.ServiceProviderMapper">
+  <resultMap id="BaseResultMap" type="com.bdlbsc.government.entity.ServiceProvider">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="operator_id" jdbcType="BIGINT" property="operatorId" />
+    <result column="names" jdbcType="VARCHAR" property="names" />
+    <result column="logo_url" jdbcType="VARCHAR" property="logoUrl" />
+    <result column="shop_contact" jdbcType="VARCHAR" property="shopContact" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="address_x" jdbcType="VARCHAR" property="addressX" />
+    <result column="address_y" jdbcType="VARCHAR" property="addressY" />
+    <result column="hourse_numbers" jdbcType="VARCHAR" property="hourseNumbers" />
+    <result column="classified_management" jdbcType="VARCHAR" property="classifiedManagement" />
+    <result column="business_license_url" jdbcType="VARCHAR" property="businessLicenseUrl" />
+    <result column="business_certificate_" jdbcType="VARCHAR" property="businessCertificate" />
+    <result column="principle_name" jdbcType="VARCHAR" property="principleName" />
+    <result column="principle_contact" jdbcType="VARCHAR" property="principleContact" />
+    <result column="principle_idcard" jdbcType="VARCHAR" property="principleIdcard" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="manager_name" jdbcType="VARCHAR" property="managerName" />
+    <result column="manager_phone" jdbcType="VARCHAR" property="managerPhone" />
+    <result column="province_id" jdbcType="VARCHAR" property="provinceId" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="county_id" jdbcType="VARCHAR" property="countyId" />
+    <result column="county_name" jdbcType="VARCHAR" property="countyName" />
+    <result column="street_id" jdbcType="VARCHAR" property="streetId" />
+    <result column="street_name" jdbcType="VARCHAR" property="streetName" />
+    <result column="community_id" jdbcType="VARCHAR" property="communityId" />
+    <result column="community_name" jdbcType="VARCHAR" property="communityName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from service_provider
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.bdlbsc.government.entity.ServiceProvider">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into service_provider (operator_id, names, logo_url, 
+      shop_contact, address, address_x, 
+      address_y, hourse_numbers, classified_management, 
+      business_license_url, business_certificate_, 
+      principle_name, principle_contact, principle_idcard, 
+      create_time, update_time, is_delete, 
+      status, manager_name, manager_phone, 
+      province_id, province_name, city_id, 
+      city_name, county_id, county_name, 
+      street_id, street_name, community_id, 
+      community_name)
+    values (#{operatorId,jdbcType=BIGINT}, #{names,jdbcType=VARCHAR}, #{logoUrl,jdbcType=VARCHAR}, 
+      #{shopContact,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{addressX,jdbcType=VARCHAR}, 
+      #{addressY,jdbcType=VARCHAR}, #{hourseNumbers,jdbcType=VARCHAR}, #{classifiedManagement,jdbcType=VARCHAR}, 
+      #{businessLicenseUrl,jdbcType=VARCHAR}, #{businessCertificate,jdbcType=VARCHAR}, 
+      #{principleName,jdbcType=VARCHAR}, #{principleContact,jdbcType=VARCHAR}, #{principleIdcard,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{managerName,jdbcType=VARCHAR}, #{managerPhone,jdbcType=VARCHAR}, 
+      #{provinceId,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR}, 
+      #{cityName,jdbcType=VARCHAR}, #{countyId,jdbcType=VARCHAR}, #{countyName,jdbcType=VARCHAR}, 
+      #{streetId,jdbcType=VARCHAR}, #{streetName,jdbcType=VARCHAR}, #{communityId,jdbcType=VARCHAR}, 
+      #{communityName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.bdlbsc.government.entity.ServiceProvider">
+    update service_provider
+    set operator_id = #{operatorId,jdbcType=BIGINT},
+      names = #{names,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      shop_contact = #{shopContact,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      address_x = #{addressX,jdbcType=VARCHAR},
+      address_y = #{addressY,jdbcType=VARCHAR},
+      hourse_numbers = #{hourseNumbers,jdbcType=VARCHAR},
+      classified_management = #{classifiedManagement,jdbcType=VARCHAR},
+      business_license_url = #{businessLicenseUrl,jdbcType=VARCHAR},
+      business_certificate_ = #{businessCertificate,jdbcType=VARCHAR},
+      principle_name = #{principleName,jdbcType=VARCHAR},
+      principle_contact = #{principleContact,jdbcType=VARCHAR},
+      principle_idcard = #{principleIdcard,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      manager_name = #{managerName,jdbcType=VARCHAR},
+      manager_phone = #{managerPhone,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      county_id = #{countyId,jdbcType=VARCHAR},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      street_id = #{streetId,jdbcType=VARCHAR},
+      street_name = #{streetName,jdbcType=VARCHAR},
+      community_id = #{communityId,jdbcType=VARCHAR},
+      community_name = #{communityName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, operator_id, names, logo_url, shop_contact, address, address_x, address_y, 
+    hourse_numbers, classified_management, business_license_url, business_certificate_, 
+    principle_name, principle_contact, principle_idcard, create_time, update_time, is_delete, 
+    status, manager_name, manager_phone, province_id, province_name, city_id, city_name, 
+    county_id, county_name, street_id, street_name, community_id, community_name
+    from service_provider
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, operator_id, names, logo_url, shop_contact, address, address_x, address_y, 
+    hourse_numbers, classified_management, business_license_url, business_certificate_, 
+    principle_name, principle_contact, principle_idcard, create_time, update_time, is_delete, 
+    status, manager_name, manager_phone, province_id, province_name, city_id, city_name, 
+    county_id, county_name, street_id, street_name, community_id, community_name
+    from service_provider
+  </select>
+</mapper>

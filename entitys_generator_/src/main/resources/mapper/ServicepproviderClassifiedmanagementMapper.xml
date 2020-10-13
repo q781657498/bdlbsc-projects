@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdlbsc.government.mapper.ServicepproviderClassifiedmanagementMapper">
+  <resultMap id="BaseResultMap" type="com.bdlbsc.government.entity.ServicepproviderClassifiedmanagement">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="service_provider_id" jdbcType="BIGINT" property="serviceProviderId" />
+    <result column="level_id" jdbcType="VARCHAR" property="levelId" />
+    <result column="level_name" jdbcType="VARCHAR" property="levelName" />
+    <result column="checked" jdbcType="VARCHAR" property="checked" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from servicepProvider_classifiedManagement
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bdlbsc.government.entity.ServicepproviderClassifiedmanagement">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into servicepProvider_classifiedManagement (service_provider_id, level_id, level_name, 
+      checked)
+    values (#{serviceProviderId,jdbcType=BIGINT}, #{levelId,jdbcType=VARCHAR}, #{levelName,jdbcType=VARCHAR}, 
+      #{checked,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.bdlbsc.government.entity.ServicepproviderClassifiedmanagement">
+    update servicepProvider_classifiedManagement
+    set service_provider_id = #{serviceProviderId,jdbcType=BIGINT},
+      level_id = #{levelId,jdbcType=VARCHAR},
+      level_name = #{levelName,jdbcType=VARCHAR},
+      checked = #{checked,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, service_provider_id, level_id, level_name, checked
+    from servicepProvider_classifiedManagement
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, service_provider_id, level_id, level_name, checked
+    from servicepProvider_classifiedManagement
+  </select>
+</mapper>
